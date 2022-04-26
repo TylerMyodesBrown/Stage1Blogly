@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+Edit User
+{%endblock%}
+
+
+
+{% block content %}
+<h1>{{ user.full_name() }}</h1>
+<p> <img src="{{user.img_url}}" alt="User Image"></img></p>
+
+<form action='/edit_resolve' method="POST">
+    <p>First Name:     <input name="f_name" placeholder='{{user.first_name}}'></p>
+    <p>Last Name:  <input name="l_name" placeholder='{{user.last_name}}'></p>
+    <p>Picture URL:   <input name="img_url" placeholder='{{user.img_url}}'></p>
+    <button>Save</button>
+</form>
+
+<form action='/delete' method="POST">
+    <p>First Name:     <input name="f_name" placeholder='{{user.first_name}}'></p>
+    <p>Last Name:  <input name="l_name" placeholder='{{user.last_name}}'></p>
+    <p>Picture URL:   <input name="img_url" placeholder='{{user.img_url}}'></p>
+    <button>Save</button>
+</form>
+
+{%endblock%}
