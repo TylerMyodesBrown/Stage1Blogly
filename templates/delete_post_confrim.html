@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+Final Delete
+{%endblock%}
+
+
+
+{% block content %}
+<h1>{{post.title}}</h1>
+<p>{{post.content}}</p>
+<br>
+<h2>Are you sure you want to delete?</h2>
+<a href="/post_details/{{post.id}}">No</a><a href="/delete-post-final/{{post.id}}">Yes</a>
+
+{%endblock%}

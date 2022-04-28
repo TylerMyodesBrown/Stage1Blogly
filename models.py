@@ -1,5 +1,5 @@
 """Models for Blogly."""
-
+import datetime
 from email.policy import default
 from flask_sqlalchemy import SQLAlchemy
 
@@ -30,6 +30,9 @@ class User(db.Model):
                     default = 'https://media.istockphoto.com/photos/barbary-macaque-picture-id824860820?k=20&m=824860820&s=612x612&w=0&h=W8783ZGcqMfDMJoXvBAyDFcSjnOWdKqKhgLGvf-VIuU='
     )
     
+    posts = db.relationship('Post')
+    
+    
     def greet(self):
         """Greet using name."""
 
@@ -45,13 +48,33 @@ class User(db.Model):
 
         p = self
         return f"<User id={p.id} | Name={p.first_name} {p.last_name} | Hunger Level={p.hunger}>"
+    
+    
+    
+    
+class Post(db.Model):
+    
+    __tablename__ = "Posts"
+    
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    title = db.Column(db.String(25),
+                     nullable=False,
+                     UNIQUE = True)
+    content = db.Column(db.Text,
+                     nullable=False)
+    time_created - db.Column(
+                    db.TIMESTAMP, default = datetime.datetime.now())
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('User.id'),
+        nullable=False)
+    
+    def __repr__(self):
+        """Show info about user."""
 
-    @classmethod
-    def get_by_species(cls, species):
-        """Get all pets matching that species."""
-
-        return cls.query.filter_by(species=species).all()
-
-    @classmethod
-    def get_all_hungry(cls):
-        return cls.query.filter(Pet.hunger >= 20).all();
+        p = self
+        return f"<post id={p.id} | title={p.title} | User id = {p.user_id}>"
+    
+    
