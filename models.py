@@ -78,3 +78,27 @@ class Post(db.Model):
         return f"<post id={p.id} | title={p.title} | User id = {p.user_id}>"
     
     
+    
+class PostTag(db.Model):
+    
+    __tablename__ = "PostTag"
+    
+    post_id = db.Column(db.Integer,
+                    db.ForeignKey('Post.id'),
+                   primary_key=True)
+    tag_id = db.Column(db.Integer,
+                    db.ForeignKey('Tag.id'),
+                   primary_key=True)
+    
+    
+    
+class Tag(db.Model):
+    
+    __tablename__ = "Tags"
+    
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    title = db.Column(db.String(10),
+                     nullable=False,
+                     UNIQUE = True)

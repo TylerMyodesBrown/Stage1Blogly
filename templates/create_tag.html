@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+New Post
+{%endblock%}
+
+
+
+{% block content %}
+<h1>Create a New Tag</h1>
+<form action='/add_tag_resolve' method="POST">
+  <p>Tag Name:     <input name="title"></p>
+  <button>Save</button>
+</form>
+<a href="/">Cancel</a>
+{%endblock%}

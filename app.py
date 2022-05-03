@@ -1,7 +1,7 @@
 """Blogly application."""
 
 from flask import Flask, request, redirect, render_template
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly_db'
@@ -92,7 +92,7 @@ def edit_user(user_id):
 def show_post(post_id):
     """Show info on a single post."""
     post = Post.query.get_or_404(post_id)
-    
+    tags = session.query(Tag).all()
     return render_template("post_detail.html", post = post)
 
 
